@@ -2,7 +2,7 @@ package com.supermarket.market.domain.mapper;
 
 import com.supermarket.market.data.model.MarketEntity;
 import com.supermarket.market.data.model.ProductsEntity;
-import com.supermarket.market.domain.dto.MarketDTO;
+import com.supermarket.market.domain.dto.market.MarketSimpleDTO;
 import com.supermarket.market.domain.dto.ProductsDTO;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -12,6 +12,7 @@ public class ProductMapper {
 
 
     private final MarketMapper marketMapper;
+    private MarketSimpleDTO markerSimpleDTO;
 
     public ProductMapper(@Lazy MarketMapper marketMapper) {
         this.marketMapper = marketMapper;
@@ -24,10 +25,15 @@ public class ProductMapper {
         productsDTO.setCategory(products.getCategory());
         productsDTO.setValue(products.getValue());
         productsDTO.setStock(products.getStock());
-        productsDTO.setMarket(marketMapper.toDTO(products.getMarket()));
+
+        MarketSimpleDTO marketSimpleDTO = new MarketSimpleDTO();
+        marketSimpleDTO.setMarketId(products.getMarket().getMarketId());
+        marketSimpleDTO.setMarketName(products.getMarket().getMarketName());
+        productsDTO.setMarket(marketSimpleDTO);
 
         return productsDTO;
     }
+
 
     public ProductsEntity toEntity(ProductsDTO productsDTO){
         ProductsEntity productsEntity = new ProductsEntity();

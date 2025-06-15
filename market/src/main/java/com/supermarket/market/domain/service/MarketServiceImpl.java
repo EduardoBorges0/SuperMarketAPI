@@ -2,7 +2,7 @@ package com.supermarket.market.domain.service;
 
 import com.supermarket.market.data.model.MarketEntity;
 import com.supermarket.market.data.repositories.MarketRepository;
-import com.supermarket.market.domain.dto.MarketDTO;
+import com.supermarket.market.domain.dto.market.MarketDTO;
 import com.supermarket.market.domain.mapper.MarketMapper;
 import org.springframework.stereotype.Service;
 

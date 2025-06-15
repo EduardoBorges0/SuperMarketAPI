@@ -1,11 +1,8 @@
-package com.supermarket.market.domain.dto;
+package com.supermarket.market.domain.dto.market;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.supermarket.market.data.model.ProductsEntity;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.OneToMany;
+import com.supermarket.market.domain.dto.ProductsDTO;
 import lombok.Data;
-import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,3 +15,4 @@ public class MarketDTO {
     @JsonManagedReference
     private List<ProductsDTO> products = new ArrayList<>();
 }
+

@@ -1,7 +1,7 @@
 package com.supermarket.market.domain.mapper;
 
 import com.supermarket.market.data.model.MarketEntity;
-import com.supermarket.market.domain.dto.MarketDTO;
+import com.supermarket.market.domain.dto.market.MarketDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;

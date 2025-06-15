@@ -1,6 +1,6 @@
 package com.supermarket.market.presentation.controller;
 
-import com.supermarket.market.domain.dto.MarketDTO;
+import com.supermarket.market.domain.dto.market.MarketDTO;
 import com.supermarket.market.domain.service.MarketServiceImpl;
 import org.springframework.web.bind.annotation.*;
 

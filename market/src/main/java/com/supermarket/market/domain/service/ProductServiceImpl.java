@@ -21,4 +21,13 @@ public class ProductServiceImpl {
         productsRepository.save(toEntity);
         return productsDTO;
     }
+    public Iterable<ProductsDTO> getEveryProduct(){
+        return productsRepository.findAll().stream().map(productMapper::toDTO).toList();
+    }
+    public ProductsDTO getProductById(Long id){
+        return productsRepository.findById(id).map(productMapper::toDTO).orElse(null);
+    }
+    public void deleteProduct(Long id){
+        productsRepository.deleteById(id);
+    }
 }
