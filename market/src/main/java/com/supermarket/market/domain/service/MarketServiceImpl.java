@@ -16,10 +16,19 @@ public class MarketServiceImpl {
         this.marketRepository = marketRepository;
         this.marketMapper = marketMapper;
     }
+    public Iterable<MarketDTO> getEveryMarket(){
+        return marketRepository.findAll().stream().map(marketMapper::toDTO).toList();
+    }
 
+    public MarketDTO getMarketById(Long id){
+        return marketRepository.findById(id).map(marketMapper::toDTO).orElse(null);
+    }
     public MarketDTO createMarket(MarketDTO marketDTO){
         MarketEntity toEntity = marketMapper.toEntity(marketDTO);
         marketRepository.save(toEntity);
         return marketDTO;
+    }
+    public void deleteMarket(Long id){
+        marketRepository.deleteById(id);
     }
 }

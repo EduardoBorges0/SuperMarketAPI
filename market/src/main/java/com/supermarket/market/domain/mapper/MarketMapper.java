@@ -2,13 +2,20 @@ package com.supermarket.market.domain.mapper;
 
 import com.supermarket.market.data.model.MarketEntity;
 import com.supermarket.market.domain.dto.MarketDTO;
+import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
+@Component
 public class MarketMapper {
-    private ProductMapper productMapper = new ProductMapper();
+    private final ProductMapper productMapper;
+
+    public MarketMapper(ProductMapper productMapper) {
+        this.productMapper = productMapper;
+    }
     public MarketDTO toDTO(MarketEntity market){
         MarketDTO marketDTO = new MarketDTO();
+        marketDTO.setMarketId(market.getMarketId()); // <- Certifique-se de incluir essa linha
         marketDTO.setMarketName(market.getMarketName());
         marketDTO.setMarketCredits(market.getMarketCredits());
         marketDTO.setProducts(

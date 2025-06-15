@@ -4,10 +4,18 @@ import com.supermarket.market.data.model.MarketEntity;
 import com.supermarket.market.data.model.ProductsEntity;
 import com.supermarket.market.domain.dto.MarketDTO;
 import com.supermarket.market.domain.dto.ProductsDTO;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProductMapper {
 
-    private final MarketMapper marketMapper = new MarketMapper();
+
+    private final MarketMapper marketMapper;
+
+    public ProductMapper(@Lazy MarketMapper marketMapper) {
+        this.marketMapper = marketMapper;
+    }
 
     public ProductsDTO toDTO(ProductsEntity products){
         ProductsDTO productsDTO = new ProductsDTO();
@@ -26,8 +34,9 @@ public class ProductMapper {
         productsEntity.setCategory(productsDTO.getCategory());
         productsEntity.setValue(productsDTO.getValue());
         productsEntity.setStock(productsDTO.getStock());
-        productsEntity.setMarket(marketMapper.toEntity(productsDTO.getMarket()));
-
+        MarketEntity marketEntity = new MarketEntity();
+        marketEntity.setMarketId(productsDTO.getMarket().getMarketId());
+        productsEntity.setMarket(marketEntity);
         return productsEntity;
     }
 }

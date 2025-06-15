@@ -5,6 +5,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -12,5 +13,5 @@ public class MarketDTO {
     private Long marketId;
     private String marketName;
     private Double marketCredits;
-    private List<ProductsDTO> products;
+    private List<ProductsDTO> products = new ArrayList<>();
 }
