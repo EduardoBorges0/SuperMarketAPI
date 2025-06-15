@@ -1,9 +1,11 @@
 package com.supermarket.market.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.supermarket.market.data.model.MarketEntity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 public class ProductsDTO {
@@ -17,5 +19,6 @@ public class ProductsDTO {
 
     private String category;
 
+    @JsonBackReference
     private MarketDTO market;
 }

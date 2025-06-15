@@ -19,6 +19,7 @@ public class ProductMapper {
 
     public ProductsDTO toDTO(ProductsEntity products){
         ProductsDTO productsDTO = new ProductsDTO();
+        productsDTO.setId(products.getId());
         productsDTO.setProduct_name(products.getProduct_name());
         productsDTO.setCategory(products.getCategory());
         productsDTO.setValue(products.getValue());
@@ -30,6 +31,7 @@ public class ProductMapper {
 
     public ProductsEntity toEntity(ProductsDTO productsDTO){
         ProductsEntity productsEntity = new ProductsEntity();
+        productsEntity.setId(productsDTO.getId());
         productsEntity.setProduct_name(productsDTO.getProduct_name());
         productsEntity.setCategory(productsDTO.getCategory());
         productsEntity.setValue(productsDTO.getValue());
