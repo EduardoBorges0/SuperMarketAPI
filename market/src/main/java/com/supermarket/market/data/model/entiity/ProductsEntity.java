@@ -1,4 +1,4 @@
-package com.supermarket.market.data.model;
+package com.supermarket.market.data.model.entiity;
 
 import jakarta.persistence.*;
 import lombok.Data;

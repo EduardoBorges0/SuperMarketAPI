@@ -1,6 +1,6 @@
 package com.supermarket.market.domain.service;
 
-import com.supermarket.market.data.model.ProductsEntity;
+import com.supermarket.market.data.model.entiity.ProductsEntity;
 import com.supermarket.market.data.repositories.ProductsRepository;
 import com.supermarket.market.domain.dto.ProductsDTO;
 import com.supermarket.market.domain.mapper.ProductMapper;

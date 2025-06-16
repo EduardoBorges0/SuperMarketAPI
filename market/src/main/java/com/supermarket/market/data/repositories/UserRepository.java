@@ -1,6 +1,6 @@
 package com.supermarket.market.data.repositories;
 
-import com.supermarket.market.data.model.UserEntity;
+import com.supermarket.market.data.model.entiity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
