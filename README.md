@@ -37,13 +37,13 @@ CREATE DATABASE supermarket_api;
 
 Exemplo de configuração:
 
-spring.datasource.url=jdbc:postgresql://localhost:5432/supermarket_api
-spring.datasource.username=seu_usuario
-spring.datasource.password=sua_senha
+spring.datasource.url=jdbc:postgresql://localhost:5432/supermarket_api  </br>
+spring.datasource.username=seu_usuario </br>
+spring.datasource.password=sua_senha </br>
 
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto=update </br>
+spring.jpa.show-sql=true </br>
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect </br>
 
 1. Clone o repositório
 git clone https://github.com/seu-usuario/seu-repositorio.git
@@ -56,30 +56,30 @@ Ou, para compilar e gerar o .jar:
 mvn clean install
 java -jar target/seu-arquivo.jar
 
-📫 Endpoints principais
-Após iniciar, a API estará disponível em:
+📫 Endpoints principais </br>
+Após iniciar, a API estará disponível em: </br>
 
 http://localhost:8080
 
 Endpoints:
 
-GET /market/getEveryMarket
-GET /market/getEveryMarket
-POST /market/createMarket
-DELETE /market/deleteMarket/{id}
-GET /product/getEveryProduct - Listar produtos
-GET /product/getProductById/{id} - Buscar produto por ID
-POST /product/createProduct - Criar novo produto
-DELETE product/deleteProduct/{id} - Remover produto
+GET /market/getEveryMarket </br>
+GET /market/getEveryMarket </br>
+POST /market/createMarket </br>
+DELETE /market/deleteMarket/{id} </br>
+GET /product/getEveryProduct - Listar produtos </br>
+GET /product/getProductById/{id} - Buscar produto por ID </br>
+POST /product/createProduct - Criar novo produto </br>
+DELETE product/deleteProduct/{id} - Remover produto </br>
 
-🧪 Testes
-Para rodar os testes:
+🧪 Testes </br>
+Para rodar os testes: </br>
 mvn test
 
-📌 Observações
-Use ferramentas como Postman ou Insomnia para testar os endpoints.
-A API segue os princípios RESTful.
+📌 Observações </br>
+Use ferramentas como Postman ou Insomnia para testar os endpoints. </br>
+A API segue os princípios RESTful. </br>
 
-👨‍💻 Autor
-Desenvolvido por Eduardo Borges
+👨‍💻 Autor  </br>
+Desenvolvido por Eduardo Borges </br>
 🔗 LinkedIn: https://www.linkedin.com/in/eduardoo-borges/
