@@ -12,15 +12,12 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import java.util.Objects;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.postgresql.hostchooser.HostRequirement.any;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductUnitTests {
@@ -40,31 +37,27 @@ public class ProductUnitTests {
 
     @Test
     void testCreateProduct() {
-        // Arrange: cria o DTO de entrada
+        // Arrange
         ProductsDTO createProduct = new ProductsDTO();
         createProduct.setProduct_name("Arroz 1Kg");
         createProduct.setCategory("Food");
         createProduct.setValue(15.0);
         createProduct.setStock(10);
 
-        // Cria a entidade esperada
         ProductsEntity entity = new ProductsEntity();
         entity.setProduct_name("Arroz 1Kg");
         entity.setCategory("Food");
         entity.setValue(15.0);
         entity.setStock(10);
 
-        // Define comportamento dos mocks
         when(productMapper.toEntity(any())).thenReturn(entity);
         when(productsRepository.save(any())).thenReturn(entity);
 
         ResponseEntity<?> result = productService.createProduct(createProduct);
 
-        // Assert: verifica o resultado
+        // Assert
         assertNotNull(result);
         assertEquals(HttpStatus.CREATED, result.getStatusCode());
-
-        // Verifica se os métodos esperados foram chamados
         verify(productMapper).toEntity(any());
         verify(productsRepository).save(any());
     }
