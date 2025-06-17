@@ -61,6 +61,17 @@ Após iniciar, a API estará disponível em:
 
 http://localhost:8080
 
+Endpoints:
+
+GET /market/getEveryMarket
+GET /market/getEveryMarket
+POST /market/createMarket
+DELETE /market/deleteMarket/{id}
+GET /product/getEveryProduct - Listar produtos
+GET /product/getProductById/{id} - Buscar produto por ID
+POST /product/createProduct - Criar novo produto
+DELETE product/deleteProduct/{id} - Remover produto
+
 🧪 Testes
 Para rodar os testes:
 mvn test
