@@ -19,34 +19,16 @@ public class ProductController {
 
     @PostMapping("/createProduct")
     public ResponseEntity<?> createProduct(@RequestBody ProductsDTO productsDTO) {
-        try {
-            boolean isError = Objects.equals(productsDTO.getProduct_name(), "")
-                    || Objects.equals(productsDTO.getCategory(), "") ||
-                    productsDTO.getValue() == 0 ||
-                    productsDTO.getStock() == 0;
-            if(isError){
-                MessageError messageError = new MessageError();
-                messageError.setMessage("Fill every field!!");
-                messageError.setCode(400);
-                return ResponseEntity.status(messageError.code).body(messageError);
-            }else{
-                return ResponseEntity.status(200).body(productService.createProduct(productsDTO));
-            }
-        } catch (Exception e) {
-            MessageError messageError = new MessageError();
-            messageError.setMessage("Internal server error: " + e.getMessage());
-            messageError.setCode(500);
-            return ResponseEntity.status(messageError.code).body(messageError);
-        }
+        return productService.createProduct(productsDTO);
     }
 
     @GetMapping("/getProductById/{id}")
-    public ProductsDTO getProductById(@PathVariable Long id) {
+    public ResponseEntity<?> getProductById(@PathVariable Long id) {
         return productService.getProductById(id);
     }
 
     @GetMapping("/getEveryProduct")
-    public Iterable<ProductsDTO> getEveryProduct() {
+    public ResponseEntity<?> getEveryProduct() {
         return productService.getEveryProduct();
     }
 
