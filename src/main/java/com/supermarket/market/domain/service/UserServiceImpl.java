@@ -52,4 +52,8 @@ public class UserServiceImpl {
                 .map(userMapper::toDTO)
                 .collect(Collectors.toList());
     }
+    public void getMe(){
+
+    }
+
 }

@@ -37,9 +37,16 @@ public class AuthUserController {
                 .anyMatch(user -> user.getEmail().equals(auth.getEmail())
                         && passwordEncoder.matches(auth.getPassword(), user.getPassword())
                 );
+        Long id = allUsers.stream().filter(user -> {
+           user.getId();
+           return user.getEmail().equals(auth.getEmail())
+                   && passwordEncoder.matches(auth.getPassword(), user.getPassword());
+        }).map(
+                user -> user.getId()
+        ).findFirst().orElse(null);
 
         if (validUser) {
-            String token = jwtUtil.generateToken(auth.getEmail());
+            String token = jwtUtil.generateToken(id.toString());
             return ResponseEntity.ok(Map.of("token", token));
         } else {
             return ResponseEntity.status(401).body("Invalid credentials");

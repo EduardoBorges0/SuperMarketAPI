@@ -20,6 +20,10 @@ public class ProductsEntity {
     private String category;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
+
+    @ManyToOne
     @JoinColumn(name = "marketId", referencedColumnName = "marketId")
     private MarketEntity market;
 }

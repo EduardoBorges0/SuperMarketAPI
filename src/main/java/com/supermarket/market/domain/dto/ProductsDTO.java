@@ -12,5 +12,5 @@ public class ProductsDTO {
     private Integer stock;
     private String category;
 
-    private MarketSimpleDTO market; // <--- ALTERADO AQUI
+    private MarketSimpleDTO market;
 }
