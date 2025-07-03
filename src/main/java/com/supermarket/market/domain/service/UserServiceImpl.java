@@ -1,10 +1,14 @@
 package com.supermarket.market.domain.service;
 
+import com.supermarket.market.data.model.entiity.ProductsEntity;
 import com.supermarket.market.data.model.entiity.UserEntity;
 import com.supermarket.market.data.model.response.MessageError;
 import com.supermarket.market.data.repositories.UserRepository;
+import com.supermarket.market.domain.dto.ProductsDTO;
 import com.supermarket.market.domain.dto.UserDTO;
 import com.supermarket.market.domain.mapper.UserMapper;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,6 +20,9 @@ import java.util.stream.Collectors;
 public class UserServiceImpl {
     private UserRepository userRepository;
     private UserMapper userMapper;
+
+    @Autowired
+    private ProductServiceImpl productService;
 
     public UserServiceImpl(UserRepository userRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
@@ -52,8 +59,4 @@ public class UserServiceImpl {
                 .map(userMapper::toDTO)
                 .collect(Collectors.toList());
     }
-    public void getMe(){
-
-    }
-
 }

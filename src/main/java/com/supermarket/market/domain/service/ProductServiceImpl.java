@@ -53,6 +53,10 @@ public class ProductServiceImpl {
             return ResponseEntity.status(messageError.code).body(messageError);
         }
     }
+    public ProductsEntity findEntityById(Long id) {
+        return productsRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+    }
 
     public ResponseEntity<?> getProductById(Long id) {
         try{

@@ -1,11 +1,16 @@
 package com.supermarket.market.data.model.entiity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
+
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(exclude = "products") // 👈 evita a chamada recursiva
 @Entity(name = "supermarket")
-@Data
 public class MarketEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

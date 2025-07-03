@@ -4,6 +4,8 @@ import com.supermarket.market.data.model.entiity.UserEntity;
 import com.supermarket.market.domain.dto.UserDTO;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class UserMapper {
     public UserMapper() {}
@@ -15,7 +17,6 @@ public class UserMapper {
         userDTO.setCredits(user.getCredits());
         userDTO.setEmail(user.getEmail());
         userDTO.setPassword(user.getPassword());
-
         return userDTO;
     };
     public UserEntity toEntity(UserDTO userDTO){

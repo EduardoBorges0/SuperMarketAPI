@@ -59,8 +59,5 @@ public class AuthUserController {
 
         return userService.createUser(userDTO.getUsername(), userDTO.getEmail(), encodedPassword);
     }
-    @GetMapping("/getEveryUsers")
-    public ResponseEntity<?> getEveryUsers(){
-        return userService.getEveryUsers();
-    }
+
 }

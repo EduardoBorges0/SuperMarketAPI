@@ -1,10 +1,17 @@
 package com.supermarket.market.data.model.entiity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(exclude = "market")
 @Entity(name = "products")
-@Data
 public class ProductsEntity {
 
     @Id
@@ -20,10 +27,10 @@ public class ProductsEntity {
     private String category;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
-
-    @ManyToOne
     @JoinColumn(name = "marketId", referencedColumnName = "marketId")
     private MarketEntity market;
+
+    @ManyToMany(mappedBy = "products")
+    private List<UserEntity> users = new ArrayList<>();
+
 }

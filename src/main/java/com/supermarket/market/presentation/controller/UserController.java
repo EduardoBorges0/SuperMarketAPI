@@ -3,6 +3,7 @@ package com.supermarket.market.presentation.controller;
 import com.supermarket.market.config.JwtUtil;
 import com.supermarket.market.domain.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,12 +11,10 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     private UserServiceImpl userService;
-    @Autowired
-    private JwtUtil jwtUtil;
-    @PostMapping
-    public String addProductInCart(@RequestHeader("Authorization") String authHeader) {
-        String token = authHeader.replace("Bearer ", "");
-        return jwtUtil.validateTokenAndGetEmail(token);
+
+    @GetMapping("/getEveryUsers")
+    public ResponseEntity<?> getEveryUsers(){
+        return userService.getEveryUsers();
     }
 
 }
