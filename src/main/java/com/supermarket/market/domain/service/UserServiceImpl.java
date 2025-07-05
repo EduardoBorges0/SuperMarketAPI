@@ -29,34 +29,44 @@ public class UserServiceImpl {
         this.userMapper = userMapper;
     }
 
-    public ResponseEntity<?> createUser(String username, String email, String password){
-        try{
+    public ResponseEntity<?> createUser(String username, String email, String password) {
+        try {
             UserEntity entity = new UserEntity();
             entity.setUsername(username);
             entity.setEmail(email);
             entity.setPassword(password);
             userRepository.save(entity);
             return ResponseEntity.status(HttpStatus.CREATED).body(entity);
-        }catch (Exception e){
+        } catch (Exception e) {
             MessageError messageError = new MessageError();
             messageError.setCode(500);
             messageError.setMessage("e.getMessage()");
             return ResponseEntity.status(500).body(messageError);
         }
     }
-    public ResponseEntity<?> getEveryUsers(){
-        try{
+
+    public ResponseEntity<?> getEveryUsers() {
+        try {
             return ResponseEntity.status(HttpStatus.OK).body(userRepository.findAll().stream().map(userMapper::toDTO).toList());
-        }catch (Exception e){
+        } catch (Exception e) {
             MessageError messageError = new MessageError();
             messageError.setCode(500);
             messageError.setMessage("e.getMessage()");
             return ResponseEntity.status(500).body(messageError);
         }
     }
+
     public List<UserDTO> getAllUsersDTO() {
         return userRepository.findAll().stream()
                 .map(userMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public void addProductToUser(Long userId, Long productId, Integer quantity) {
+        ProductsEntity product = productService.findEntityById(productId);
+        UserEntity user = userRepository.findById(userId).orElseThrow();
+        productService.stockValueUpdate(productId, product.getStock(), quantity);
+        user.getProducts().add(product);
+        userRepository.save(user);
     }
 }

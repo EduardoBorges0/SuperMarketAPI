@@ -13,6 +13,6 @@ public class UserDTO {
     private String password;
     private String username;
     private Double credits;
-//    @JsonManagedReference
-//    private List<ProductsDTO> products = new ArrayList<>();
+    @JsonManagedReference
+    private List<ProductsDTO> products = new ArrayList<>();
 }

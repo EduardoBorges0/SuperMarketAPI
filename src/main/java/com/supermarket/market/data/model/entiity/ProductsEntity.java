@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -31,6 +33,5 @@ public class ProductsEntity {
     private MarketEntity market;
 
     @ManyToMany(mappedBy = "products")
-    private List<UserEntity> users = new ArrayList<>();
-
+    private Set<UserEntity> users = new HashSet<>();
 }

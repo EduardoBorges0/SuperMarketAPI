@@ -13,8 +13,12 @@ public class UserController {
     private UserServiceImpl userService;
 
     @GetMapping("/getEveryUsers")
-    public ResponseEntity<?> getEveryUsers(){
+    public ResponseEntity<?> getEveryUsers() {
         return userService.getEveryUsers();
     }
 
+    @PutMapping("/addProducts")
+    public void addProducts(@RequestParam Long userId, @RequestParam Long productId, @RequestParam Integer quantity) {
+        userService.addProductToUser(userId, productId, quantity);
+    }
 }

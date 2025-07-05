@@ -80,4 +80,9 @@ public class ProductServiceImpl {
     public void deleteProduct(Long id) {
         productsRepository.deleteById(id);
     }
+    public void stockValueUpdate(Long id, Integer stock, Integer quantity){
+        ProductsEntity product = findEntityById(id);
+        product.setStock(stock - quantity);
+        productsRepository.save(product);
+    }
 }
