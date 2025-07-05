@@ -32,6 +32,6 @@ public class ProductsEntity {
     @JoinColumn(name = "marketId", referencedColumnName = "marketId")
     private MarketEntity market;
 
-    @ManyToMany(mappedBy = "products")
-    private Set<UserEntity> users = new HashSet<>();
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<UserProductEntity> userProducts = new HashSet<>();
 }

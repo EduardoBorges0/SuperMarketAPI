@@ -13,6 +13,5 @@ public class UserDTO {
     private String password;
     private String username;
     private Double credits;
-    @JsonManagedReference
-    private List<ProductsDTO> products = new ArrayList<>();
+    private List<UserProductDTO> userProducts = List.of(); // substitui products
 }

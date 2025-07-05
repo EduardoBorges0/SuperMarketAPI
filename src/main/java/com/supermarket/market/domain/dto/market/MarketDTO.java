@@ -12,7 +12,6 @@ public class MarketDTO {
     private Long marketId;
     private String marketName;
     private Double marketCredits;
-    @JsonManagedReference
     private List<ProductsDTO> products = new ArrayList<>();
 }
 

@@ -7,6 +7,7 @@ Este projeto é uma API REST desenvolvida em **Java com Spring Boot**, que simul
 - Java 17+
 - Spring Boot
 - Spring Data JPA
+- Spring Security
 - PostgreSQL
 - Lombok
 - JUnit e Mockito (Testes)

@@ -2,8 +2,10 @@ package com.supermarket.market.domain.mapper;
 
 import com.supermarket.market.data.model.entiity.ProductsEntity;
 import com.supermarket.market.data.model.entiity.UserEntity;
+import com.supermarket.market.data.model.entiity.UserProductEntity;
 import com.supermarket.market.domain.dto.ProductsDTO;
 import com.supermarket.market.domain.dto.UserDTO;
+import com.supermarket.market.domain.dto.UserProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,15 +28,22 @@ public class UserMapper {
         userDTO.setCredits(user.getCredits());
         userDTO.setEmail(user.getEmail());
         userDTO.setPassword(user.getPassword());
-        List<ProductsDTO> productsDTO = user
-                .getProducts()
-                .stream().map(productMapper::toDTO)
+
+        List<UserProductDTO> userProductDTOs = user.getUserProducts()
+                .stream()
+                .map(up -> {
+                    UserProductDTO dto = new UserProductDTO();
+                    dto.setProduct(productMapper.toDTO(up.getProduct()));
+                    dto.setQuantity(up.getQuantity());
+                    return dto;
+                })
                 .collect(Collectors.toList());
-        userDTO.setProducts(productsDTO);
+
+        userDTO.setUserProducts(userProductDTOs);
+
         return userDTO;
     }
 
-    ;
 
     public UserEntity toEntity(UserDTO userDTO) {
         UserEntity userEntity = new UserEntity();
@@ -42,14 +51,22 @@ public class UserMapper {
         userEntity.setUsername(userDTO.getUsername());
         userEntity.setCredits(userDTO.getCredits());
         userEntity.setEmail(userDTO.getEmail());
-        Set<ProductsEntity> productsEntity = userDTO.getProducts()
+        userEntity.setPassword(userDTO.getPassword());
+
+        Set<UserProductEntity> userProducts = userDTO.getUserProducts()
                 .stream()
-                .map(productMapper::toEntity)
+                .map(dto -> {
+                    UserProductEntity entity = new UserProductEntity();
+                    entity.setUser(userEntity); // importante para relação bidirecional
+                    entity.setProduct(productMapper.toEntity(dto.getProduct()));
+                    entity.setQuantity(dto.getQuantity());
+                    return entity;
+                })
                 .collect(Collectors.toSet());
 
-        userEntity.setProducts(productsEntity);
+        userEntity.setUserProducts(userProducts);
 
-        userEntity.setPassword(userDTO.getPassword());
         return userEntity;
-    };
+    }
+
 }

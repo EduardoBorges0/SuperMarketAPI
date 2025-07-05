@@ -2,6 +2,7 @@ package com.supermarket.market.domain.service;
 
 import com.supermarket.market.data.model.entiity.ProductsEntity;
 import com.supermarket.market.data.model.entiity.UserEntity;
+import com.supermarket.market.data.model.entiity.UserProductEntity;
 import com.supermarket.market.data.model.response.MessageError;
 import com.supermarket.market.data.repositories.UserRepository;
 import com.supermarket.market.domain.dto.ProductsDTO;
@@ -66,7 +67,26 @@ public class UserServiceImpl {
         ProductsEntity product = productService.findEntityById(productId);
         UserEntity user = userRepository.findById(userId).orElseThrow();
         productService.stockValueUpdate(productId, product.getStock(), quantity);
-        user.getProducts().add(product);
+
+        UserProductEntity userProduct = new UserProductEntity();
+        userProduct.setUser(user);
+        userProduct.setProduct(product);
+        userProduct.setQuantity(quantity);
+
+        user.getUserProducts().add(userProduct);
         userRepository.save(user);
+    }
+    public void removeProductFromUser(Long userId, Long productId){
+        ProductsEntity product = productService.findEntityById(productId);
+        UserEntity user = userRepository.findById(userId).orElseThrow();
+        Integer quantity = user.getUserProducts().stream()
+                .filter(up -> up.getProduct().getId().equals(productId))
+                .map(UserProductEntity::getQuantity)
+                .findFirst() // pega o primeiro que encontrar (assumindo que só tem um)
+                .orElse(null); // ou 0 se quiser padrão
+        user.getUserProducts().removeIf(up -> up.getProduct().getId().equals(productId));
+        userRepository.save(user);
+        productService.stockValueUpdate(productId, product.getStock(), -quantity);
+
     }
 }
